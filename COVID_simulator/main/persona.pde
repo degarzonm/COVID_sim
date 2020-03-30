@@ -1,16 +1,17 @@
-
+import java.lang.*;
 class persona{
-private float x;
-private float y;
-private float dx;
-private float dy;
-
+public float x;
+public float y;
+public float dx;
+public float dy;
+public float count;
 private float volumen;
 
 
 
 
 public persona(float x,float y, float dx, float dy,float volumen){
+  count=0;
   this.x=x;
   this.y=y;
   this.dx=dx;
@@ -19,22 +20,26 @@ public persona(float x,float y, float dx, float dy,float volumen){
   
 }
 
+public void Count(){
+  count+=1;
+}
 
 public float[] getPositionVector(float tiempo){
 
   float[] pos =new float[2];
-  pos[0]=dx*tiempo+x;
-  pos[1]=dy*tiempo+y;
+  pos[0]=(float) (dx* Math.sqrt(tiempo) )+x;
+  pos[1]=(float) (dy* Math.sqrt(tiempo) )+y;
   return pos;
   
 }
 
 public void update(float t){
-  x=dx*tiempo+x;
-  y=dy*tiempo+y;
+  x=(float) (dx* tiempo )+x;
+  y=(float) (dy* tiempo )+y;
 }
 
-void draw(){
+void dibujar(){
+  fill(255,255-2*count,255);
    circle(x,y,volumen);
 }
 }
